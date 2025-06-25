@@ -7,28 +7,25 @@ on:
   pull_request:
 
 jobs:
-  soapui-test:
+  test_soapui:
     runs-on: windows-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Set up Java (SoapUI necesita Java)
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'  
+      - name: Download SoapUI 5.8.0 Portable ZIP
+        run: |
+          Invoke-WebRequest -Uri "https://dl.eviware.com/soapuios/5.8.0/SoapUI-5.8.0-windows-bin.zip" `
+                            -OutFile "SoapUI.zip" `
+                            -Headers @{ "User-Agent" = "Mozilla/5.0" }
+        shell: powershell
 
-    - name: Download SoapUI 5.8.0 (Open Source)
-      run: |
-        Invoke-WebRequest -Uri "https://dl.eviware.com/soapuios/5.8.0/SoapUI-x64-5.8.0.exe" `
-                          -OutFile "SoapUI-5.8.0.exe" `
-                          -Headers @{ "User-Agent" = "Mozilla/5.0" }
-        Start-Process -FilePath .\SoapUI-5.8.0.exe -ArgumentList '/S' -Wait
-      shell: powershell
+      - name: Extract SoapUI ZIP
+        run: |
+          Expand-Archive -Path SoapUI.zip -DestinationPath SoapUI
+        shell: powershell
 
-    - name: Run SoapUI Tests
-      run: |
-        & "C:\Program Files\SmartBear\SoapUI-5.8.0\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
-      shell: powershell
+      - name: Run SoapUI Tests
+        run: |
+          & ".\SoapUI\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
+        shell: powershell
