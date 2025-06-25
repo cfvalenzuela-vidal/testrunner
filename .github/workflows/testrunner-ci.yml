@@ -42,5 +42,5 @@ jobs:
 
       - name: Run SoapUI Tests
         run: |
-          & ".\SoapUI\SoapUI-5.8.0\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
+          & ".\SoapUI\SoapUI-5.8.0\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" "Project2.xml"
         shell: powershell
