@@ -1,0 +1,20 @@
+C:\Program Files\SmartBear\SoapUI-5.8.0\bin>testrunner.bat -s "TestSuite 4" -c "ValidarCorreoID" "C:\Users\cfvalenzuela.vidal\testrunner\Project2.xml"
+OpenJDK 64-Bit Server VM warning: Ignoring option --illegal-access=permit; support was removed in 17.0
+SoapUI 5.8.0 TestCase Runner
+Configuring log4j from [C:\Program Files\SmartBear\SoapUI-5.8.0\bin\soapui-log4j.xml]
+22:44:13,757 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\cfvalenzuela.vidal\soapui-settings.xml]
+22:44:15,153 INFO  [PluginManager] Adding plugin from [C:\Users\cfvalenzuela.vidal\.soapuios\plugins\readyapi-postman-1.0.1.jar]
+22:44:15,153 INFO  [PluginManager] Adding plugin from [C:\Users\cfvalenzuela.vidal\.soapuios\plugins\ready-mqtt-plugin-dist.jar]
+22:44:16,575 INFO  [PluginManager] Adding plugin from [C:\Users\cfvalenzuela.vidal\.soapuios\plugins\ready-uxm-plugin-os-1.0.3.jar]
+22:44:17,160 INFO  [PluginManager] 3 plugins loaded in 2006 ms
+22:44:17,161 INFO  [DefaultSoapUICore] All plugins loaded
+22:44:18,569 INFO  [WsdlProject] Loaded project from [file:/C:/Users/cfvalenzuela.vidal/testrunner/Project2.xml]
+22:44:18,579 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [REST Project 2]
+22:44:18,580 INFO  [SoapUITestCaseRunner] Running TestCase [ValidarCorreoID]
+22:44:18,588 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [ValidarCorreoID]
+22:44:18,595 INFO  [SoapUITestCaseRunner] running step [GET Usuarios]
+22:44:20,187 INFO  [SoapUITestCaseRunner] Assertion [JsonPath Match] has status VALID
+22:44:20,188 INFO  [SoapUITestCaseRunner] Assertion [Not Contains] has status VALID
+22:44:20,196 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [ValidarCorreoID], time taken: 600ms, status: FINISHED
+22:44:20,202 INFO  [SoapUITestCaseRunner] TestCase [ValidarCorreoID] finished with status [FINISHED] in 600ms
+22:44:20,209 WARN  [Tools] Could not delete temporary directory C:\Users\CFVALE~1.VID\AppData\Local\Temp\82dff873-a9eb-4e88-b1a2-0d8f429c9bed

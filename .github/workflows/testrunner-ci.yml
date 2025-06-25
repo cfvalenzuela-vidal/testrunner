@@ -1,0 +1,31 @@
+name: SoapUI-Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  soapui-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Java (SoapUI necesita Java)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'   # Ajusta según tu versión requerida
+
+    - name: Download SoapUI 5.8.0 (Open Source)
+      run: |
+        Invoke-WebRequest -Uri https://s3.amazonaws.com/downloads.eviware/soapuios/SoapUI-5.8.0.exe -OutFile SoapUI-5.8.0.exe
+        Start-Process -FilePath .\SoapUI-5.8.0.exe -ArgumentList '/S' -Wait
+      shell: powershell
+
+    - name: Run SoapUI Tests
+      run: |
+        "C:\Program Files\SmartBear\SoapUI-5.8.0\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
