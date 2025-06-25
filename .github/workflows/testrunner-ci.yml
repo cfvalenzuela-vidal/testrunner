@@ -17,15 +17,21 @@ jobs:
         run: |
           Invoke-WebRequest -Uri "https://dl.eviware.com/soapuios/5.8.0/SoapUI-5.8.0-windows-bin.zip" `
                             -OutFile "SoapUI.zip" `
-                            -Headers @{ "User-Agent" = "Mozilla/5.0" }
+                            -Headers @{ "User-Agent" = "Mozilla/5.0" } `
+                            -UseBasicParsing > $null 2>&1
         shell: powershell
 
       - name: Extract SoapUI ZIP
         run: |
-          Expand-Archive -Path SoapUI.zip -DestinationPath SoapUI
+          Expand-Archive -Path SoapUI.zip -DestinationPath SoapUI -Force
+        shell: powershell
+
+      - name: List SoapUI folder contents (debug)
+        run: |
+          Get-ChildItem -Recurse .\SoapUI
         shell: powershell
 
       - name: Run SoapUI Tests
         run: |
-          & ".\SoapUI\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
+          & ".\SoapUI\SoapUI-5.8.0\bin\testrunner.bat" -s "TestSuite4" -c "ValidarCorreoID" ".\testrunner\Project2.xml"
         shell: powershell
